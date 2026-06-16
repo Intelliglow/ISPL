@@ -100,7 +100,6 @@
 }
 
 .nav-link.active {
-  background: var(--accent-bg);
   color: var(--accent);
 }
 
@@ -951,3 +950,28 @@ main {
   }
 }
 
+
+.page-transition-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.transition-overlay-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  gap: 2px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.transition-block {
+  background-color: var(--transition-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

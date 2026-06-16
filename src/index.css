@@ -22,6 +22,7 @@
   --border: #e5e7eb;
   --accent: #1c61c5;
   --accent-bg: rgba(28, 97, 197, 0.12);
+  --transition-bg: rgba(0, 0, 0, 0.4);
 
   --sans: 'Clarity City', 'Inter', system-ui, -apple-system, sans-serif;
   --heading: 'Clarity City', 'Inter', system-ui, -apple-system, sans-serif;
@@ -44,6 +45,7 @@
     --border: #23304b;
     --accent: #60a5fa;
     --accent-bg: rgba(96, 165, 250, 0.15);
+    --transition-bg: rgba(0, 0, 0, 0.6);
   }
 }
 

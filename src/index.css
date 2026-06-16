@@ -1,14 +1,21 @@
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/public/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 :root {
   --text: #5a6470;
   --text-h: #0f172a;
   --bg: #ffffff;
   --surface: #f8f9fc;
   --border: #e5e7eb;
-  --accent: #7c3aed;
-  --accent-bg: rgba(124, 58, 237, 0.12);
+  --accent: #1c61c5;
+  --accent-bg: rgba(28, 97, 197, 0.12);
 
-  --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --sans: 'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   font: 16px/1.6 var(--sans);
@@ -26,8 +33,8 @@
     --bg: #0f172a;
     --surface: #111b31;
     --border: #23304b;
-    --accent: #a78bfa;
-    --accent-bg: rgba(167, 139, 250, 0.15);
+    --accent: #60a5fa;
+    --accent-bg: rgba(96, 165, 250, 0.15);
   }
 }
 

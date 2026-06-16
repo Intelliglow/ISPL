@@ -2,6 +2,9 @@ import { NavLink } from 'react-router-dom'
 import { navigation, contactDetails } from '../data/siteContent'
 
 function SiteLayout({ children }) {
+  const leftLinks = navigation.slice(0, 3)
+  const rightLinks = navigation.slice(3, 6)
+
   return (
 	<div className="app-shell">
 	  <a className="skip-link" href="#main-content">
@@ -9,16 +12,27 @@ function SiteLayout({ children }) {
 	  </a>
 
 	  <header className="site-header">
+		<nav className="nav nav-left" aria-label="Secondary navigation">
+		  {leftLinks.map((link) => (
+			<NavLink
+			  key={link.to}
+			  to={link.to}
+			  end={link.to === '/'}
+			  className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+			>
+			  {link.label}
+			</NavLink>
+		  ))}
+		</nav>
+
 		<div className="brand">
-		  <div className="brand-mark" aria-hidden="true" />
-		  <div>
-			<span className="brand-name">Intelliglow Solutions</span>
-			<span className="brand-tagline">BMS • ELV • Networking • Smart Buildings</span>
-		  </div>
+		  <NavLink to="/" className="brand-link">
+			<img src="/images/colored logo.png" alt="Intelliglow Solutions" className="brand-logo" />
+		  </NavLink>
 		</div>
 
-		<nav className="nav" aria-label="Main navigation">
-		  {navigation.map((link) => (
+		<nav className="nav nav-right" aria-label="Main navigation">
+		  {rightLinks.map((link) => (
 			<NavLink
 			  key={link.to}
 			  to={link.to}

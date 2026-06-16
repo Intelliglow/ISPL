@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import SectionHeader from '../components/SectionHeader'
+import heroBg from '../assets/hero-bg.jpg'
 import {
 	homeHighlights,
-	homeHero,
+	// homeHero,
 	projects,
 	serviceCards,
 	testimonials,
@@ -94,115 +95,74 @@ function HomePage() {
 
   return (
 	<>
-	  <section className="hero hero--home">
-		<div className="hero-bg" aria-hidden="true">
-		  <div className="sky-glow" />
-		  <div className="horizon-haze" />
-		  <div className="horizon-line" />
-		  <div className="mountain mountain-back" />
-		  <div className="mountain mountain-mid" />
-		  <div className="mountain mountain-front" />
-		  <canvas ref={starCanvasRef} className="starfield" />
-		</div>
-
-		<div className="hero-copy">
-		  <span className="eyebrow">{homeHero.eyebrow}</span>
-		  <h1>{homeHero.title}</h1>
-		  <p>{homeHero.summary}</p>
-
-		  <div className="hero-tags" aria-label="Core offerings">
-			{homeHero.tags.map((tag) => (
-			  <span key={tag}>{tag}</span>
-			))}
-		  </div>
-
-		  <div className="hero-actions">
-			<Link className="button primary" to="/services">
-			  Learn More
-			</Link>
-			<Link className="button ghost" to="/contact">
-			  Contact Us
-			</Link>
-		  </div>
-
-		  <div className="hero-summary">
-			{homeHighlights.map((item) => (
-			  <div key={item.title}>
-				<strong>{item.title}</strong>
-				<span>{item.text}</span>
-			  </div>
-			))}
-		  </div>
-		</div>
-
-		<div className="hero-visual">
-		  <img src={homeHero.image} alt={homeHero.imageAlt} loading="lazy" />
-		  <div className="hero-card">
-			<p className="card-title">Integrated Facility Intelligence</p>
-			<p className="card-subtitle">One view for energy, security, automation, and performance.</p>
-		  </div>
-		</div>
-	  </section>
+		<section
+			className="hero hero--landing"
+			style={{ backgroundImage: `url(${heroBg})` }}
+		>
+			<div className="hero-image-overlay">
+				<h1>ISPL</h1>
+			</div>
+		</section>
 
 		<>
-			{/* COMPANY INTRO */}
+		{/* COMPANY INTRO */}
 
-			<section className="section">
-				<SectionHeader
-					eyebrow="Who We Are"
-					title="Engineering Smart Buildings Across Sri Lanka & South Asia"
-					description="We provide integrated building automation, ELV systems, networking infrastructure, and smart technology solutions that improve operational efficiency, security, and long-term performance."
-				/>
+		<section className="section">
+			<SectionHeader
+				eyebrow="Who We Are"
+				title="Engineering Smart Buildings Across Sri Lanka & South Asia"
+				description="We provide integrated building automation, ELV systems, networking infrastructure, and smart technology solutions that improve operational efficiency, security, and long-term performance."
+			/>
 
-				<div className="hero-summary hero-summary--centered">
-					{homeHighlights.map((item) => (
-						<div key={item.title}>
-							<strong>{item.title}</strong>
-							<span>{item.text}</span>
+			<div className="hero-summary hero-summary--centered">
+				{homeHighlights.map((item) => (
+					<div key={item.title}>
+						<strong>{item.title}</strong>
+						<span>{item.text}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		{/* PROJECTS */}
+
+		<section className="section section--soft">
+			<SectionHeader
+				eyebrow="Our Projects"
+				title="Proven delivery across industries."
+				description="From pharmaceutical facilities to hospitality and large-scale commercial developments."
+			/>
+
+			<div className="project-carousel">
+				{projects.slice(0, 6).map((project) => (
+					<article className="project-card" key={project.slug}>
+						<div className="project-meta">
+							<span>{project.industry}</span>
+							<span>{project.location}</span>
 						</div>
-					))}
-				</div>
-			</section>
 
-			{/* PROJECTS */}
+						<h3>{project.name}</h3>
 
-			<section className="section section--soft">
-				<SectionHeader
-					eyebrow="Our Projects"
-					title="Proven delivery across industries."
-					description="From pharmaceutical facilities to hospitality and large-scale commercial developments."
-				/>
+						<p>{project.type}</p>
 
-				<div className="project-carousel">
-					{projects.slice(0, 6).map((project) => (
-						<article className="project-card" key={project.slug}>
-							<div className="project-meta">
-								<span>{project.industry}</span>
-								<span>{project.location}</span>
-							</div>
+						<p>{project.overview}</p>
 
-							<h3>{project.name}</h3>
+						<Link
+							className="text-link"
+							to={`/projects/${project.slug}`}
+						>
+							View Case Study
+						</Link>
+					</article>
+				))}
+			</div>
 
-							<p>{project.type}</p>
-
-							<p>{project.overview}</p>
-
-							<Link
-								className="text-link"
-								to={`/projects/${project.slug}`}
-							>
-								View Case Study
-							</Link>
-						</article>
-					))}
-				</div>
-
-				<div className="section-action">
-					<Link className="button ghost" to="/projects">
-						View All Projects
-					</Link>
-				</div>
-			</section>
+			<div className="section-action">
+				<Link className="button ghost" to="/projects">
+					View All Projects
+				</Link>
+			</div>
+		</section>
 
 			{/* SERVICES */}
 

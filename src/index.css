@@ -1,0 +1,84 @@
+:root {
+  --text: #5a6470;
+  --text-h: #0f172a;
+  --bg: #ffffff;
+  --surface: #f8f9fc;
+  --border: #e5e7eb;
+  --accent: #7c3aed;
+  --accent-bg: rgba(124, 58, 237, 0.12);
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  font: 16px/1.6 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #cbd5f5;
+    --text-h: #f8fafc;
+    --bg: #0f172a;
+    --surface: #111b31;
+    --border: #23304b;
+    --accent: #a78bfa;
+    --accent-bg: rgba(167, 139, 250, 0.15);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading), sans-serif;
+  color: var(--text-h);
+  margin: 0;
+}
+
+h1 {
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+}
+

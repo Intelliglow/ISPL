@@ -1,8 +1,17 @@
 @font-face {
-  font-family: 'SF Pro Text';
-  src: url('/public/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
+  font-family: 'Clarity City';
+  src: url('/fonts/ClarityCity-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clarity City';
+  src: url('/fonts/ClarityCity-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
@@ -14,8 +23,8 @@
   --accent: #1c61c5;
   --accent-bg: rgba(28, 97, 197, 0.12);
 
-  --sans: 'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif;
-  --heading: 'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif;
+  --sans: 'Clarity City', 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'Clarity City', 'Inter', system-ui, -apple-system, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   font: 16px/1.6 var(--sans);

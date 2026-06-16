@@ -21,7 +21,7 @@
 }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -30,15 +30,17 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
-  padding: 18px 8vw;
+  padding: 10px 8vw;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   .site-header {
     background: rgba(15, 23, 42, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -49,7 +51,7 @@
 }
 
 .brand-logo {
-  height: 54px;
+  height: 40px;
   width: auto;
   display: block;
 }
@@ -92,8 +94,9 @@
   text-decoration: none;
   color: var(--text-h);
   font-weight: 500;
-  padding: 8px 12px;
+  padding: 6px 12px;
   border-radius: 999px;
+  font-size: 14px;
 }
 
 .nav-link.active {
@@ -109,7 +112,7 @@ main {
 .page-hero {
   position: relative;
   overflow: hidden;
-  padding: 130px 8vw 48px;
+  padding: 100px 8vw 48px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -305,9 +308,17 @@ main {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
 }
 
 .hero-image-overlay h1 {
@@ -317,6 +328,24 @@ main {
   letter-spacing: 0.15em;
   margin: 0;
   text-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  text-align: center;
+  /* Shift slightly to compensate for the trailing letter-spacing of the last letter */
+  margin-right: -0.15em;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  color: white;
+  font-size: clamp(0.6rem, 1.4vw, 1.15rem);
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: 0;
+  width: 100%;
+  text-align: justify;
+  text-align-last: justify;
+  letter-spacing: 0.05em;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 .hero-copy--centered h1 {
   max-width: none;
@@ -840,11 +869,12 @@ main {
 
 @media (max-width: 760px) {
   .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     flex-direction: column;
     align-items: center;
-    padding: 18px 6vw;
-    gap: 16px;
+    padding: 12px 6vw;
+    gap: 12px;
   }
 
   .nav {

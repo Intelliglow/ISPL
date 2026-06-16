@@ -100,7 +100,10 @@ function HomePage() {
 			style={{ backgroundImage: `url(${heroBg})` }}
 		>
 			<div className="hero-image-overlay">
-				<h1>ISPL</h1>
+				<div className="hero-title-container">
+					<h1>ISPL</h1>
+					<p className="hero-subtitle">Intelliglow Solutions (Pvt) Ltd</p>
+				</div>
 			</div>
 		</section>
 

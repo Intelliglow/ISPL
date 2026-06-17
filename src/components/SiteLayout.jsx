@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { navigation, contactDetails } from '../data/siteContent'
+import CustomCursor from './CustomCursor'
 
 function SiteLayout({ children }) {
   const leftLinks = navigation.slice(0, 3)
@@ -7,6 +8,7 @@ function SiteLayout({ children }) {
 
   return (
 	<div className="app-shell">
+	  <CustomCursor />
 	  <a className="skip-link" href="#main-content">
 		Skip to content
 	  </a>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import SectionHeader from '../components/SectionHeader'
 import heroBg from '../assets/hero-bg.jpg'
@@ -10,11 +10,112 @@ import {
 	testimonials,
 } from '../data/siteContent'
 
+const HighlightIcon = ({ name }) => {
+	const icons = {
+		layers: (
+			<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.27a1 1 0 0 0 0 1.78l8.57 4.09a2 2 0 0 0 1.66 0l8.57-4.09a1 1 0 0 0 0-1.78Z" />
+		),
+		target: (
+			<>
+				<circle cx="12" cy="12" r="10" />
+				<circle cx="12" cy="12" r="6" />
+				<circle cx="12" cy="12" r="2" />
+			</>
+		),
+		'shield-check': (
+			<>
+				<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+				<path d="m9 13 2 2 4-4" />
+			</>
+		),
+		globe: (
+			<>
+				<circle cx="12" cy="12" r="10" />
+				<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+				<path d="M2 12h20" />
+			</>
+		),
+	}
+
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			className="highlight-icon-svg"
+		>
+			{icons[name] || null}
+		</svg>
+	)
+}
+
 function HomePage() {
   const starCanvasRef = useRef(null)
+  const nextSectionRef = useRef(null)
 
-  useEffect(() => {
-	const canvas = starCanvasRef.current
+ 	const [currentSlide, setCurrentSlide] = useState(0)
+	const totalSlides = Math.min(projects.length, 6)
+
+	const [isMobile, setIsMobile] = useState(false)
+	const [dragStartX, setDragStartX] = useState(null)
+	const [dragOffset, setDragOffset] = useState(0)
+	const [isDragging, setIsDragging] = useState(false)
+	const slideshowRef = useRef(null)
+
+	useEffect(() => {
+		const checkMobile = () => setIsMobile(window.innerWidth <= 760)
+		checkMobile()
+		window.addEventListener('resize', checkMobile)
+		return () => window.removeEventListener('resize', checkMobile)
+	}, [])
+
+	const slideWidth = isMobile ? 90 : 85
+
+	const nextSlide = () => {
+		setCurrentSlide((prev) => (prev + 1) % totalSlides)
+	}
+
+	const prevSlide = () => {
+		setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)
+	}
+
+	const handleDragStart = (e) => {
+		const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX
+		setDragStartX(clientX)
+		setIsDragging(true)
+	}
+
+	const handleDragMove = (e) => {
+		if (dragStartX === null) return
+		const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX
+		const offset = clientX - dragStartX
+		setDragOffset(offset)
+	}
+
+	const handleDragEnd = () => {
+		if (dragStartX === null) return
+
+		const threshold = slideshowRef.current ? slideshowRef.current.offsetWidth * 0.2 : 100
+
+		if (dragOffset < -threshold) {
+			nextSlide()
+		} else if (dragOffset > threshold) {
+			prevSlide()
+		}
+
+		setDragStartX(null)
+		setDragOffset(0)
+		setIsDragging(false)
+	}
+
+	useEffect(() => {
+		const canvas = starCanvasRef.current
 	if (!canvas) return undefined
 
 	const context = canvas.getContext('2d')
@@ -93,7 +194,14 @@ function HomePage() {
 	}
   }, [])
 
-  return (
+ 	const maxScroll = Math.max(0, (totalSlides * slideWidth) - 100)
+	const currentTranslation = Math.min(currentSlide * slideWidth, maxScroll)
+
+	const scrollToNextSection = () => {
+		nextSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+	}
+
+	return (
 	<>
 		<section
 			className="hero hero--landing"
@@ -104,13 +212,33 @@ function HomePage() {
 					<h1>ISPL</h1>
 					<p className="hero-subtitle">Intelliglow Solutions (Pvt) Ltd</p>
 				</div>
+
+				<button 
+					className="hero-descend" 
+					onClick={scrollToNextSection}
+					aria-label="Scroll to next section"
+				>
+					<span>DESCEND</span>
+					<svg 
+						width="24" 
+						height="24" 
+						viewBox="0 0 24 24" 
+						fill="none" 
+						stroke="currentColor" 
+						strokeWidth="2" 
+						strokeLinecap="round" 
+						strokeLinejoin="round"
+					>
+						<path d="M7 11l5 5 5-5" />
+					</svg>
+				</button>
 			</div>
 		</section>
 
 		<>
 		{/* COMPANY INTRO */}
 
-		<section className="section">
+		<section className="section" ref={nextSectionRef}>
 			<SectionHeader
 				eyebrow="Who We Are"
 				title="Engineering Smart Buildings Across Sri Lanka & South Asia"
@@ -119,7 +247,10 @@ function HomePage() {
 
 			<div className="hero-summary hero-summary--centered">
 				{homeHighlights.map((item) => (
-					<div key={item.title}>
+					<div key={item.title} className="highlight-card">
+						<div className="highlight-icon-container">
+							<HighlightIcon name={item.icon} />
+						</div>
 						<strong>{item.title}</strong>
 						<span>{item.text}</span>
 					</div>
@@ -129,35 +260,79 @@ function HomePage() {
 
 		{/* PROJECTS */}
 
-		<section className="section section--soft">
-			<SectionHeader
-				eyebrow="Our Projects"
-				title="Proven delivery across industries."
-				description="From pharmaceutical facilities to hospitality and large-scale commercial developments."
-			/>
+		<section className="section section--soft section--full">
+			<div className="section-header-container">
+				<SectionHeader
+					eyebrow="Our Projects"
+					title="Proven delivery across industries."
+					description="From pharmaceutical facilities to hospitality and large-scale commercial developments."
+				/>
+			</div>
 
-			<div className="project-carousel">
-				{projects.slice(0, 6).map((project) => (
-					<article className="project-card" key={project.slug}>
-						<div className="project-meta">
-							<span>{project.industry}</span>
-							<span>{project.location}</span>
-						</div>
+			<div className="project-slideshow-container">
+				<div 
+					className={`project-slideshow ${isDragging ? 'is-dragging' : ''}`}
+					ref={slideshowRef}
+					onMouseDown={handleDragStart}
+					onMouseMove={handleDragMove}
+					onMouseUp={handleDragEnd}
+					onMouseLeave={handleDragEnd}
+					onTouchStart={handleDragStart}
+					onTouchMove={handleDragMove}
+					onTouchEnd={handleDragEnd}
+				>
+					<div 
+						className="slides-wrapper" 
+						style={{ 
+							transform: `translateX(calc(-${currentTranslation}% + ${dragOffset}px))`,
+							transition: isDragging ? 'none' : undefined
+						}}
+					>
+						{projects.slice(0, 6).map((project) => (
+							<article className="project-slide" key={project.slug}>
+								<div className="project-image-container">
+									<img src={project.image} alt={project.name} className="project-image" />
+									<div className="project-image-overlay">
+										<div className="project-meta">
+											<span>{project.industry}</span>
+											<span>{project.location}</span>
+										</div>
+										<div className="project-slide-content">
+											<div className="project-slide-text">
+												<h3>{project.name}</h3>
+												<p className="project-description">{project.overview}</p>
+											</div>
+											<Link
+												className="button primary x-small project-button"
+												to={`/projects/${project.slug}`}
+											>
+												View Case Study
+											</Link>
+										</div>
+									</div>
+								</div>
+							</article>
+						))}
+					</div>
 
-						<h3>{project.name}</h3>
+					<button className="slideshow-control prev" onClick={prevSlide} aria-label="Previous slide">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+					</button>
+					<button className="slideshow-control next" onClick={nextSlide} aria-label="Next slide">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+					</button>
 
-						<p>{project.type}</p>
-
-						<p>{project.overview}</p>
-
-						<Link
-							className="text-link"
-							to={`/projects/${project.slug}`}
-						>
-							View Case Study
-						</Link>
-					</article>
-				))}
+					<div className="slideshow-indicators">
+						{Array.from({ length: totalSlides }).map((_, idx) => (
+							<button
+								key={idx}
+								className={`indicator ${idx === currentSlide ? 'active' : ''}`}
+								onClick={() => setCurrentSlide(idx)}
+								aria-label={`Go to slide ${idx + 1}`}
+							/>
+						))}
+					</div>
+				</div>
 			</div>
 
 			<div className="section-action">

@@ -28,12 +28,24 @@ export const homeHero = {
 
 export const homeHighlights = [
   {
-    title: 'End-to-end delivery',
-    text: 'Design, procurement, installation, commissioning, and support.',
+    icon: 'layers',
+    title: 'Vendor-aware integration',
+    text: 'Seamless deployment across major engineering platforms.',
   },
   {
-    title: 'Trusted partnerships',
-    text: 'Vendor-aware delivery with a strong engineering and integration focus.',
+    icon: 'target',
+    title: 'Technical precision',
+    text: 'Focus on accuracy in design and commissioning.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Reliable performance',
+    text: 'Long-term dependability for critical facilities.',
+  },
+  {
+    icon: 'globe',
+    title: 'South Asian reach',
+    text: 'Proven project delivery across the regional market.',
   },
 ]
 
@@ -358,8 +370,9 @@ export const projects = [
     type: 'ELV System Deployment',
     location: 'Maldives',
     industry: 'Hospitality',
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A hospitality project focused on dependable ELV infrastructure across guest and operational areas.',
+      'A comprehensive hospitality project focused on the deployment of a highly dependable ELV infrastructure across all guest rooms, public spaces, and operational areas. This large-scale resort required a sophisticated integration of multiple systems to ensure seamless guest experiences and robust operational safety. Our team managed the end-to-end design and implementation, ensuring that the technology blends perfectly with the resort’s aesthetic while providing the powerful backbone needed for modern digital services, high-speed connectivity, and site-wide security monitoring.',
     challenge:
       'The client needed a dependable low-voltage backbone that could support guest experience and operational safety without disrupting the resort environment.',
     solution:
@@ -374,8 +387,9 @@ export const projects = [
     type: 'Building Management System',
     location: 'Sri Lanka',
     industry: 'Pharmaceutical',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A controlled-environment facility requiring reliable automation and monitoring for comfort and compliance.',
+      'A state-of-the-art pharmaceutical manufacturing facility requiring absolute precision in automation and environmental monitoring. For Kelun Lifesciences, we implemented a sophisticated Building Management System (BMS) designed to maintain strict climate controls and monitor critical process points. This system ensures full compliance with international pharmaceutical standards while optimizing energy usage and providing the facility management team with real-time data insights into every aspect of the building’s performance, from cleanroom stability to utility efficiency.',
     challenge:
       'The client required tighter visibility and control of building services to support stable operations and efficiency.',
     solution:
@@ -390,8 +404,9 @@ export const projects = [
     type: 'Network + WiFi + BMS',
     location: 'Sri Lanka',
     industry: 'Manufacturing',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A multi-system facility requiring a stable network backbone and integrated building services.',
+      'A complex multi-system integration for a leading manufacturing facility, combining high-speed network infrastructure, facility-wide WiFi connectivity, and a robust Building Management System. The project focused on creating a unified digital environment where operational technology (OT) and information technology (IT) work in harmony. By bridging these systems, we provided Celogen Lanka with a scalable platform that supports their current production needs while offering the flexibility to integrate future smart manufacturing technologies and advanced data analytics.',
     challenge:
       'The organization needed reliable connectivity for operations plus a building control layer that could support future expansion.',
     solution:
@@ -406,8 +421,9 @@ export const projects = [
     type: 'ICT + CCTV + Access Control',
     location: 'Colombo',
     industry: 'Commercial',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A large-scale commercial environment requiring secure communications and physical access management.',
+      'As one of the most prestigious developments in the region, the Colombo Port City project demanded a world-class ICT and security infrastructure. Our contribution involved the design and deployment of advanced CCTV surveillance systems and sophisticated access control mechanisms integrated with a high-performance ICT backbone. This system provides comprehensive perimeter security and internal monitoring for a dense commercial environment, ensuring a safe and connected space for businesses, residents, and visitors alike in this landmark maritime city.',
     challenge:
       'The project demanded consistent ICT performance together with strong perimeter and entry control across a complex site.',
     solution:
@@ -422,8 +438,9 @@ export const projects = [
     type: 'Hospital ICT Infrastructure',
     location: 'Sri Lanka',
     industry: 'Healthcare',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A healthcare environment requiring dependable ICT infrastructure to support day-to-day hospital operations.',
+      'A critical healthcare infrastructure project aimed at providing Kanola Hospital with a robust and redundant ICT foundation. In a medical environment, system uptime is paramount; therefore, we designed a high-availability network with logical segmentation to separate clinical data, administrative traffic, and guest WiFi. This implementation supports modern digital healthcare applications, electronic medical records, and real-time communication between departments, ensuring that the hospital’s digital services are as reliable as its medical care.',
     challenge:
       'The hospital needed a stable and well-organized ICT foundation to serve clinical and administrative functions.',
     solution:
@@ -438,8 +455,9 @@ export const projects = [
     type: 'Chiller Plant BMS',
     location: 'Colombo',
     industry: 'Commercial',
+    image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop',
     overview:
-      'A commercial building project focused on chiller plant visibility and efficiency through BMS integration.',
+      'This major commercial renovation focused on the modernization of the Majestic City chiller plant through advanced BMS integration. We replaced aging controls with a centralized automation platform that provides deep visibility into cooling performance and energy consumption. The solution includes intelligent sequencing for chillers and pumps, real-time alerting for maintenance issues, and a user-friendly dashboard that allows facility managers to optimize the building’s thermal environment while significantly reducing operational costs and carbon footprint.',
     challenge:
       'The client needed stronger monitoring and control of the chiller plant to improve operational efficiency and response time.',
     solution:

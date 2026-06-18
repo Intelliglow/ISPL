@@ -56,6 +56,8 @@ export const serviceCards = [
     eyebrow: 'Building Management Systems',
     description:
       'Building automation systems that unify HVAC, lighting, energy, and critical facilities control.',
+    image: 'https://images.unsplash.com/photo-1558444479-c8f027d6a5ad?q=80&w=800&auto=format&fit=crop',
+    icon: 'building',
     items: ['HVAC control', 'Lighting control', 'Energy management', 'System integration'],
     intro:
       'Our BMS projects connect major building systems into a single operational view so teams can monitor, optimize, and control environments efficiently.',
@@ -83,6 +85,8 @@ export const serviceCards = [
     eyebrow: 'Extra-Low Voltage Systems',
     description:
       'Low-voltage infrastructure that supports safety, communications, and seamless site-wide connectivity.',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop',
+    icon: 'zap',
     items: ['CCTV', 'Access control', 'Fire alarm systems', 'Communication systems'],
     intro:
       'ELV systems form the digital and physical backbone of a facility. We design and deliver solutions that improve safety, communication, and control.',
@@ -110,6 +114,8 @@ export const serviceCards = [
     eyebrow: 'Networking & Integration',
     description:
       'Reliable network architecture, structured cabling, and integrated control for modern facilities.',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop',
+    icon: 'network',
     items: ['Structured cabling', 'WiFi design', 'Core switches', 'Support and maintenance'],
     intro:
       'Modern buildings rely on secure and stable networks. We create the infrastructure that makes digital systems perform reliably.',
@@ -137,6 +143,8 @@ export const serviceCards = [
     eyebrow: 'Cyber Security Solutions',
     description:
       'Protection services that reduce risk across connected infrastructure and devices.',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop',
+    icon: 'shield',
     items: ['Network hardening', 'Access policies', 'Monitoring', 'Incident response'],
     intro:
       'As buildings become more connected, cyber security becomes a core requirement. We help reduce risk across systems, devices, and operational access paths.',
@@ -164,6 +172,8 @@ export const serviceCards = [
     eyebrow: 'Smart Home Automation',
     description:
       'Automation for comfort, convenience, and energy efficiency in residential and premium spaces.',
+    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=800&auto=format&fit=crop',
+    icon: 'home',
     items: ['Lighting scenes', 'Climate control', 'Security integration', 'Mobile control'],
     intro:
       'Smart home automation connects comfort, convenience, and energy management into a responsive living environment.',
@@ -191,6 +201,8 @@ export const serviceCards = [
     eyebrow: 'Solar Power',
     description:
       'Renewable power systems that support cost reduction and sustainability goals.',
+    image: 'https://images.unsplash.com/photo-1509391366360-fe5bb6583e22?q=80&w=800&auto=format&fit=crop',
+    icon: 'sun',
     items: ['Solar design', 'Inverters', 'Monitoring', 'Maintenance'],
     intro:
       'Solar solutions help organizations reduce grid dependence, control operating costs, and move toward sustainability targets.',
@@ -218,6 +230,7 @@ export const serviceCards = [
     eyebrow: 'Public Address Systems',
     description:
       'Clear communications and emergency broadcast infrastructure for safe, reliable messaging.',
+    icon: 'volume-2',
     items: ['Paging', 'Evacuation alerts', 'Zone control', 'Voice messaging'],
     intro:
       'Public address systems are essential for communication in large facilities, especially where safety announcements and operational paging are required.',
@@ -245,6 +258,7 @@ export const serviceCards = [
     eyebrow: 'Centralized Clock Systems',
     description:
       'Time synchronization systems for accurate coordination across buildings and operations.',
+    icon: 'clock',
     items: ['Master clocks', 'Time sync', 'Display clocks', 'Distributed control'],
     intro:
       'Centralized clock systems are often overlooked, but they are vital for accurate scheduling, coordination, and emergency response in large facilities.',
@@ -272,6 +286,7 @@ export const serviceCards = [
     eyebrow: 'Energy / Environment Management Systems',
     description:
       'Monitoring and optimization systems for energy, utility, and environmental performance.',
+    icon: 'bar-chart',
     items: ['Energy dashboards', 'Utility monitoring', 'Alerts', 'Optimization'],
     intro:
       'EMS solutions help owners and operators understand usage patterns and improve efficiency across energy and environmental metrics.',

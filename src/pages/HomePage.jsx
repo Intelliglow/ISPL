@@ -12,6 +12,60 @@ import {
 
 const HighlightIcon = ({ name }) => {
 	const icons = {
+		building: (
+			<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+		),
+		zap: (
+			<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+		),
+		network: (
+			<>
+				<rect x="16" y="16" width="6" height="6" rx="1" />
+				<rect x="2" y="16" width="6" height="6" rx="1" />
+				<rect x="9" y="2" width="6" height="6" rx="1" />
+				<path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+				<path d="M12 12V8" />
+			</>
+		),
+		shield: (
+			<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+		),
+		home: (
+			<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+		),
+		sun: (
+			<>
+				<circle cx="12" cy="12" r="4" />
+				<path d="M12 2v2" />
+				<path d="M12 20v2" />
+				<path d="m4.93 4.93 1.41 1.41" />
+				<path d="m17.66 17.66 1.41 1.41" />
+				<path d="M2 12h2" />
+				<path d="M20 12h2" />
+				<path d="m6.34 17.66-1.41 1.41" />
+				<path d="m19.07 4.93-1.41 1.41" />
+			</>
+		),
+		'volume-2': (
+			<>
+				<path d="M11 5 6 9H2v6h4l5 4V5z" />
+				<path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+				<path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+			</>
+		),
+		clock: (
+			<>
+				<circle cx="12" cy="12" r="10" />
+				<polyline points="12 6 12 12 16 14" />
+			</>
+		),
+		'bar-chart': (
+			<>
+				<line x1="12" y1="20" x2="12" y2="10" />
+				<line x1="18" y1="20" x2="18" y2="4" />
+				<line x1="6" y1="20" x2="6" y2="16" />
+			</>
+		),
 		layers: (
 			<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.27a1 1 0 0 0 0 1.78l8.57 4.09a2 2 0 0 0 1.66 0l8.57-4.09a1 1 0 0 0 0-1.78Z" />
 		),
@@ -213,20 +267,20 @@ function HomePage() {
 					<p className="hero-subtitle">Intelliglow Solutions (Pvt) Ltd</p>
 				</div>
 
-				<button 
-					className="hero-descend" 
+				<button
+					className="hero-descend"
 					onClick={scrollToNextSection}
 					aria-label="Scroll to next section"
 				>
 					<span>DESCEND</span>
-					<svg 
-						width="24" 
-						height="24" 
-						viewBox="0 0 24 24" 
-						fill="none" 
-						stroke="currentColor" 
-						strokeWidth="2" 
-						strokeLinecap="round" 
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
 						strokeLinejoin="round"
 					>
 						<path d="M7 11l5 5 5-5" />
@@ -270,7 +324,7 @@ function HomePage() {
 			</div>
 
 			<div className="project-slideshow-container">
-				<div 
+				<div
 					className={`project-slideshow ${isDragging ? 'is-dragging' : ''}`}
 					ref={slideshowRef}
 					onMouseDown={handleDragStart}
@@ -281,9 +335,9 @@ function HomePage() {
 					onTouchMove={handleDragMove}
 					onTouchEnd={handleDragEnd}
 				>
-					<div 
-						className="slides-wrapper" 
-						style={{ 
+					<div
+						className="slides-wrapper"
+						style={{
 							transform: `translateX(calc(-${currentTranslation}% + ${dragOffset}px))`,
 							transition: isDragging ? 'none' : undefined
 						}}
@@ -352,28 +406,41 @@ function HomePage() {
 				/>
 
 				<div className="feature-grid">
-					{serviceCards.slice(0, 4).map((card) => (
-						<article className="feature-card" key={card.slug}>
-          <span className="eyebrow eyebrow--dark">
-            {card.eyebrow}
-          </span>
+					{serviceCards.slice(0, 6).map((card) => (
+						<article
+							className="feature-card"
+							key={card.slug}
+							style={card.image ? { backgroundImage: `url(${card.image})` } : {}}
+						>
+							<div className="feature-card-icon">
+								<HighlightIcon name={card.icon} />
+							</div>
+							<div className="feature-card-content">
+								<div className="feature-card-header">
+									<span className="eyebrow">
+										{card.eyebrow}
+									</span>
+									<h3>{card.title}</h3>
+								</div>
 
-							<h3>{card.title}</h3>
+								<div className="feature-card-details">
+									<p>{card.description}</p>
 
-							<p>{card.description}</p>
+									<ul>
+										{card.items.map((item) => (
+											<li key={item}>{item}</li>
+										))}
+									</ul>
 
-							<ul>
-								{card.items.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
-
-							<Link
-								className="text-link"
-								to={`/services/${card.slug}`}
-							>
-								Learn More
-							</Link>
+									<Link
+										className="text-link"
+										to={`/services/${card.slug}`}
+									>
+										Learn More
+										<span aria-hidden="true">→</span>
+									</Link>
+								</div>
+							</div>
 						</article>
 					))}
 				</div>

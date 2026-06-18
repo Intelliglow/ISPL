@@ -497,7 +497,7 @@ main {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url('/src/assets/hero-bg.jpg');
+  /*background-image: url('/src/assets/hero-bg.jpg');*/
   background-size: cover;
   background-position: center;
   z-index: -2;

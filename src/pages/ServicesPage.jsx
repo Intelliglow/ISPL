@@ -1,70 +1,87 @@
-import { Link } from 'react-router-dom'
 import SectionHeader from '../components/SectionHeader'
-import { serviceCategories, serviceCards } from '../data/siteContent'
+import { serviceOfferings } from '../data/siteContent'
 
 function ServicesPage() {
+  const allServices = serviceOfferings.flatMap((category) => {
+    if (category.title === 'DATA Network Systems') {
+      return [{
+        name: category.title,
+        category: category.accent,
+        summary: category.summary,
+        subServices: category.services,
+        featured: true,
+      }]
+    }
+
+    const services = category.services.map((service) => ({
+      name: service,
+      category: category.title,
+    }))
+
+    return services
+  })
+
   return (
     <>
-      <section className="page-hero">
-        <span className="eyebrow">Services</span>
-        <h1>Integrated building services across automation, ELV, networking, and support.</h1>
-        <p>
-          Our service pages follow a consistent structure so clients can quickly understand what each
-          solution does, how it is delivered, and where it applies.
-        </p>
-      </section>
+      <section className="services-hero">
+        <div className="services-hero__copy">
+          <span className="eyebrow eyebrow--dark">Services</span>
+          <h1>Integrated ELV, network, safety, and smart building systems.</h1>
+          <p>
+            We design, configure, install, commission, and support the technology systems that keep
+            modern facilities connected, secure, and easier to operate.
+          </p>
+        </div>
 
-      <section className="section">
-        <SectionHeader
-          eyebrow="Service Page Template"
-          title="Every service follows the same clear delivery pattern."
-          description="Hero, introduction, what we do, industries served, FAQ, and related projects."
-        />
-        <div className="template-grid">
-          {['Hero Section', 'Introduction', 'What We Do', 'Industries Served', 'FAQ', 'Related Projects'].map(
-            (item) => (
-              <div key={item} className="template-card">
-                {item}
-              </div>
-            )
-          )}
+        <div className="services-hero__panel" aria-label="Services overview">
+          <strong>{allServices.length}</strong>
+          <span>services in one place</span>
+          <p>Network infrastructure, communications, security, life safety, and smart building control.</p>
         </div>
       </section>
 
-      <section className="section section--soft">
+      <section className="services-section services-section--intro">
         <SectionHeader
-          eyebrow="Service Categories"
-          title="Choose a service to view the dedicated detail page."
+          eyebrow="All Services"
+          title="Everything we deliver, clearly listed."
+          description="Each service is shown as its own card so clients can scan the full offering without opening another page."
         />
-        <div className="feature-grid">
-          {serviceCards.map((service) => (
-            <article className="feature-card" key={service.slug}>
-              <span className="eyebrow eyebrow--dark">{service.eyebrow}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <Link className="text-link" to={`/services/${service.slug}`}>
-                Open page
-              </Link>
+
+        <div className="services-list-grid">
+          {allServices.map((service, index) => (
+            <article
+              className={`services-list-card${service.featured ? ' services-list-card--featured' : ''}`}
+              key={`${service.category}-${service.name}`}
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div className="services-list-card__content">
+                <h2>{service.name}</h2>
+                <p>{service.summary || service.category}</p>
+                {service.subServices ? (
+                  <ul>
+                    {service.subServices.map((subService) => (
+                      <li key={subService}>{subService}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+              <small>{service.category}</small>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section">
-        <SectionHeader eyebrow="Service Coverage" title="Common technology categories we deliver." />
-        <div className="category-grid">
-          {serviceCategories.map((category) => (
-            <article className="category-card" key={category.title}>
-              <div>
-                <h3>{category.title}</h3>
-                <p>{category.description}</p>
-              </div>
-              <ul>
-                {category.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </article>
+      <section className="services-section services-section--process">
+        <SectionHeader
+          eyebrow="Delivery"
+          title="Built for clean handover and long-term reliability."
+          description="Each service can be handled as a standalone scope or as part of a wider integrated building technology project."
+        />
+        <div className="services-process-grid">
+          {['Design', 'Supply', 'Installation', 'Configuration', 'Testing & commissioning', 'Maintenance'].map((step) => (
+            <div className="services-process-step" key={step}>
+              {step}
+            </div>
           ))}
         </div>
       </section>
@@ -73,4 +90,3 @@ function ServicesPage() {
 }
 
 export default ServicesPage
-

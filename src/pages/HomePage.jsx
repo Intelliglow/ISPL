@@ -257,14 +257,37 @@ function HomePage() {
 
 	return (
 	<>
-		<section
-			className="hero hero--landing"
+		<div
+			className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
 			style={{ backgroundImage: `url(${heroBg})` }}
+		/>
+		<section
+			className="
+				relative
+				min-h-screen
+				w-full
+				flex
+				items-center
+				justify-center
+				"
 		>
-			<div className="hero-image-overlay">
-				<div className="hero-title-container">
-					<h1>ISPL</h1>
-					<p className="hero-subtitle">Intelliglow Solutions (Pvt) Ltd</p>
+			<div
+				className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/50 z-10"
+			>
+					<div className="z-10 flex flex-col items-center">
+						<h1
+							className="text-[clamp(5rem,12vw,10rem)] font-black tracking-[0.18em] leading-none text-white text-center"
+					>
+						ISPL
+					</h1>
+
+					<div className="w-full flex justify-center">
+							<p
+								className="mt-6 text-[clamp(0.7rem,1.4vw,1.125rem)] uppercase text-white/80 tracking-[0.2em] whitespace-nowrap text-center"
+						>
+							Intelliglow Solutions (Pvt) Ltd
+						</p>
+					</div>
 				</div>
 
 				<button
@@ -292,25 +315,34 @@ function HomePage() {
 		<>
 		{/* COMPANY INTRO */}
 
-		<section className="section" ref={nextSectionRef}>
-			<SectionHeader
-				eyebrow="Who We Are"
-				title="Engineering Smart Buildings Across Sri Lanka & South Asia"
-				description="We provide integrated building automation, ELV systems, networking infrastructure, and smart technology solutions that improve operational efficiency, security, and long-term performance."
-			/>
+			<section className="relative py-16 px-[8vw] border-b border-[var(--border)]" ref={nextSectionRef}>
 
-			<div className="hero-summary hero-summary--centered">
-				{homeHighlights.map((item) => (
-					<div key={item.title} className="highlight-card">
-						<div className="highlight-icon-container">
-							<HighlightIcon name={item.icon} />
-						</div>
-						<strong>{item.title}</strong>
-						<span>{item.text}</span>
+				{/* background overlay */}
+				<div className="absolute inset-0 bg-slate-900/70 backdrop-blur-xl pointer-events-none z-0" />
+
+				{/* content layer */}
+				<div className="relative z-10">
+
+					<SectionHeader
+						eyebrow="Who We Are"
+						title="Engineering Smart Buildings Across Sri Lanka & South Asia"
+						description="We provide integrated building automation, ELV systems, networking infrastructure, and smart technology solutions that improve operational efficiency, security, and long-term performance."
+					/>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center  p-12 relative z-10">
+						{homeHighlights.map((item) => (
+							<div key={item.title} className="flex flex-col items-center gap-3">
+								<div className="w-16 h-16 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-sky-300">
+									<HighlightIcon name={item.icon} />
+								</div>
+								<strong>{item.title}</strong>
+								<span>{item.text}</span>
+							</div>
+						))}
 					</div>
-				))}
-			</div>
-		</section>
+
+				</div>
+			</section>
 
 		{/* PROJECTS */}
 
@@ -410,7 +442,17 @@ function HomePage() {
 						<article
 							className="feature-card"
 							key={card.slug}
-							style={card.image ? { backgroundImage: `url(${card.image})` } : {}}
+							style={
+								card.image
+									? {
+											backgroundImage: `url(${
+												card.image.startsWith('/')
+													? card.image
+													: new URL(card.image, import.meta.url).href
+											})`
+										}
+									: {}
+							}
 						>
 							<div className="feature-card-icon">
 								<HighlightIcon name={card.icon} />
@@ -512,4 +554,3 @@ function HomePage() {
 }
 
 export default HomePage
-

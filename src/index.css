@@ -1,6 +1,8 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'Clarity City';
-  src: url('/fonts/ClarityCity-SemiBold.otf') format('opentype');
+  src: url('public/fonts/ClarityCity-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -8,7 +10,7 @@
 
 @font-face {
   font-family: 'Clarity City';
-  src: url('/fonts/ClarityCity-Thin.otf') format('opentype');
+  src: url('public/fonts/ClarityCity-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -100,3 +102,6 @@ button {
   background: none;
 }
 
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/

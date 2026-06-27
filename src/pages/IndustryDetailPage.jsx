@@ -35,30 +35,30 @@ function IndustryDetailPage() {
 
   return (
     <>
-      <section className="page-hero page-hero--detail">
-        <span className="eyebrow">{industry.title}</span>
-        <h1>{industry.description}</h1>
-        <p>{industry.overview}</p>
+      <section className="relative overflow-hidden px-[8vw] py-[100px] pb-12 border-b border-[var(--border)] bg-gradient-to-b from-[rgba(56,189,248,0.08)] from-[rgba(28,97,197,0.08)] to-[var(--surface)]">
+        <span className="text-[12px] font-bold tracking-[0.14em] uppercase text-[#7dd3fc]">{industry.title}</span>
+        <h1 className="mt-2.5 mb-2.5 max-w-[12ch]">{industry.description}</h1>
+        <p className="max-w-[68ch]">{industry.overview}</p>
       </section>
 
-      <section className="section">
+      <section className="px-[8vw] py-16 border-b border-[var(--border)]">
         <SectionHeader eyebrow="Common Needs" title="Operational priorities in this sector." />
-        <div className="pill-grid">
+        <div className="grid gap-[14px]">
           {industry.useCases.map((useCase) => (
-            <span key={useCase}>{useCase}</span>
+            <span key={useCase} className="inline-flex items-center justify-center rounded-full px-[14px] py-[10px] border border-[var(--border)] bg-[var(--bg)] text-[var(--text-h)] text-[13px]">{useCase}</span>
           ))}
         </div>
       </section>
 
-      <section className="section section--soft">
+      <section className="px-[8vw] py-16 border-b border-[var(--border)] bg-[var(--surface)]">
         <SectionHeader eyebrow="Recommended Services" title="Solutions typically used in this environment." />
-        <div className="feature-grid">
+        <div className="grid grid-cols-3 gap-[14px]">
           {relatedServices.map((service) => (
             <article className="feature-card" key={service.slug}>
-              <span className="eyebrow eyebrow--dark">{service.eyebrow}</span>
+              <span className="text-[12px] font-bold tracking-[0.14em] uppercase text-[var(--accent)]">{service.eyebrow}</span>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <Link className="text-link" to={`/services/${service.slug}`}>
+              <Link className="w-fit text-[var(--accent)] no-underline font-bold transition-transform duration-200 ease hover:-translate-y-px" to={`/services/${service.slug}`}>
                 View service
               </Link>
             </article>
@@ -67,13 +67,13 @@ function IndustryDetailPage() {
       </section>
 
       {relatedProject ? (
-        <section className="section">
+        <section className="px-[8vw] py-16 border-b border-[var(--border)]">
           <SectionHeader eyebrow="Related Project" title="A relevant project from this sector." />
-          <article className="detail-panel">
+          <article className="p-6 border border-[var(--border)] rounded-[22px] bg-[var(--bg)] shadow-[0_10px_30px_rgba(15,23,42,0.04)] grid gap-[14px]">
             <h3>{relatedProject.name}</h3>
             <p>{relatedProject.type}</p>
             <p>{relatedProject.overview}</p>
-            <Link className="text-link" to={`/projects/${relatedProject.slug}`}>
+            <Link className="w-fit text-[var(--accent)] no-underline font-bold transition-transform duration-200 ease hover:-translate-y-px" to={`/projects/${relatedProject.slug}`}>
               Read case study
             </Link>
           </article>

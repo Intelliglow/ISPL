@@ -310,6 +310,55 @@ export const serviceCards = [
   },
 ]
 
+export const serviceOfferings = [
+  {
+    title: 'DATA Network Systems',
+    summary: 'Structured LAN/WAN design, configuration, cabling, and commissioning for dependable site connectivity.',
+    accent: 'Network backbone',
+    services: [
+      'Firewall configuration (LAN / WAN)',
+      'Router configuration (LAN / WAN)',
+      'Core network configuration (LAN / WAN)',
+      'L2 network configuration with any topology',
+      'Network passive cabling (Cat 5/6/7) and commissioning',
+    ],
+  },
+  {
+    title: 'Communication & Media Systems',
+    summary: 'Reliable voice, wireless, television, and announcement systems for daily operations and guest experience.',
+    accent: 'Communication systems',
+    services: [
+      'Wireless Network System',
+      'Telephone System',
+      'Television System',
+      'Public Address and Audio System',
+      'Smart Clock System',
+    ],
+  },
+  {
+    title: 'Security & Life Safety Systems',
+    summary: 'Integrated protection, access, response, and monitoring systems for commercial and critical environments.',
+    accent: 'Safety and control',
+    services: [
+      'Closed-Circuit Television System',
+      'Access Control System',
+      'Emergency Alarm System',
+      'Nurse Call System for Hospitals',
+      'Guard Tour System',
+    ],
+  },
+  {
+    title: 'Smart Building Systems',
+    summary: 'Automation and intelligent control platforms that improve comfort, visibility, and operational efficiency.',
+    accent: 'Smart operations',
+    services: [
+      'Guest Room Management System',
+      'IOT Solutions',
+      'Building Management System',
+    ],
+  },
+]
+
 export const whyChooseUs = [
   {
     title: 'Smart Building Solutions',
@@ -633,13 +682,16 @@ export const articles = [
 ]
 
 export const contactDetails = {
-  phones: ['+94 11 000 0000', '+94 77 000 0000'],
-  email: 'hello@intelliglowsolutions.com',
-  offices: ['Colombo, Sri Lanka', 'Dubai, UAE'],
+  phones: ['+94 777 226 444', '+94 117 221 747', '+94 719 557 557'],
+  email: 'info@ispl.com',
+  hours: 'Monday - Friday : 08.00 - 17:00',
+  offices: [
+    '301/2, Mihidu Mawatha, Makola North, Makola, Sri Lanka',
+    '18, First Floor, Regency Park Commercial Unit, Pallekale, Kundasale, Sri Lanka',
+  ],
 }
 
 export const getServiceBySlug = (slug) => serviceCards.find((service) => service.slug === slug)
 export const getProjectBySlug = (slug) => projects.find((project) => project.slug === slug)
 export const getIndustryBySlug = (slug) => industries.find((industry) => industry.slug === slug)
 export const getArticleBySlug = (slug) => articles.find((article) => article.slug === slug)
-
